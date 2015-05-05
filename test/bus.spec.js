@@ -94,6 +94,35 @@ describe('bus', function() {
       return send(c, [5, 6, '<end>']);
     });
   });
+  it('stops emitting on end call', function() {
+    var a, b, bus, c;
+    a = stream();
+    b = send(prop(), [0]);
+    c = stream();
+    bus = kefirBus().plug(a).plug(b).plug(c);
+    return expect(bus).toEmit([{
+      current: 0
+    }, 1, 2, 3, '<end>'], function() {
+      send(a, [1]);
+      send(b, [2]);
+      send(c, [3]);
+      bus.end();
+      send(b, [4]);
+    });
+  });
+  it('calling end on unactivated bus works', function() {
+    var a, b, bus, c;
+    a = stream();
+    b = send(prop(), [0]);
+    c = stream();
+    bus = kefirBus().end().plug(a).plug(b).plug(c);
+    return expect(bus).toEmit(['<end:current>'], function() {
+      send(a, [1]);
+      send(b, [2]);
+      send(c, [3]);
+      send(b, [4]);
+    });
+  });
   it('should deliver currents from all source properties, but only to first subscriber on each activation', function() {
     var a, b, bus, c;
     a = send(prop(), [0]);

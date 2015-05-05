@@ -3,16 +3,26 @@ module.exports = kefirBus;
 var util = require('util');
 var Kefir = require('kefir');
 
+var dummyPool = {plug: function() {}, unplug: function() {}};
+
 function kefirBus() {
   var ended = false;
   var pool = Kefir.pool();
-  var endnow = null;
+  var endemitter = null;
+
+  function endnow() {
+    ended = true;
+    if (endemitter) {
+      endemitter();
+    }
+    pool = dummyPool;
+  }
 
   var stream = Kefir.stream(function(emitter) {
     function sub(event) {
       emitter.emitEvent(event);
     }
-    endnow = function() {
+    endemitter = function() {
       emitter.end();
     };
 
@@ -22,6 +32,7 @@ function kefirBus() {
       pool.onAny(sub);
       return function() {
         pool.offAny(sub);
+        endemitter = null;
       };
     }
   });
@@ -65,10 +76,7 @@ function kefirBus() {
   };
 
   stream.end = function() {
-    ended = true;
-    if (endnow) {
-      endnow();
-    }
+    endnow();
     return this;
   };
 
