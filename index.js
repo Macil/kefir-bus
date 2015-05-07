@@ -8,48 +8,32 @@ var dummyPool = {plug: function() {}, unplug: function() {}};
 function kefirBus() {
   var ended = false;
   var pool = Kefir.pool();
-  var endemitter = null;
+  var emitter = null;
 
-  function endnow() {
-    ended = true;
-    if (endemitter) {
-      endemitter();
-    }
-    pool = dummyPool;
-  }
-
-  var stream = Kefir.stream(function(emitter) {
+  var stream = Kefir.stream(function(_emitter) {
     function sub(event) {
-      emitter.emitEvent(event);
+      _emitter.emitEvent(event);
     }
-    endemitter = function() {
-      emitter.end();
-    };
+    emitter = _emitter;
 
     if (ended) {
-      endnow();
+      _emitter.end();
     } else {
       pool.onAny(sub);
       return function() {
         pool.offAny(sub);
-        endemitter = null;
+        emitter = null;
       };
     }
   });
 
   stream.emit = function(x) {
-    pool.plug(Kefir.stream(function(emitter) {
-      emitter.emit(x);
-      emitter.end();
-    }));
+    if (emitter) emitter.emit(x);
     return this;
   };
 
   stream.error = function(err) {
-    pool.plug(Kefir.stream(function(emitter) {
-      emitter.error(err);
-      emitter.end();
-    }));
+    if (emitter) emitter.error(err);
     return this;
   };
 
@@ -57,10 +41,7 @@ function kefirBus() {
     if (event.type === 'end') {
       this.end();
     } else {
-      pool.plug(Kefir.stream(function(emitter) {
-        emitter.emitEvent(event);
-        emitter.end();
-      }));
+      if (emitter) emitter.emitEvent(event);
     }
     return this;
   };
@@ -76,9 +57,11 @@ function kefirBus() {
   };
 
   stream.end = function() {
-    endnow();
+    ended = true;
+    if (emitter) emitter.end();
+    pool = dummyPool;
     return this;
   };
 
-  return stream;
+  return stream.setName('bus');
 }

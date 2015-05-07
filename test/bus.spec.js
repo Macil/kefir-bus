@@ -194,7 +194,7 @@ describe('bus', function() {
     pool.plug(c);
     return expect(pool).errorsToFlow(c);
   });
-  return it('should deactivate sources on end', function() {
+  it('should deactivate sources on end', function() {
     var a, b, bus, c, i, j, len, len1, obs, ref1, ref2, results;
     a = stream();
     b = prop();
@@ -214,5 +214,12 @@ describe('bus', function() {
       results.push(expect(obs).not.toBeActive());
     }
     return results;
+  });
+  it('emits while inactive are lost to the void', function() {
+    var bus = kefirBus();
+    bus.emit(5);
+    return expect(bus).toEmit([6], function() {
+      bus.emit(6);
+    });
   });
 });
