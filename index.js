@@ -1,6 +1,5 @@
 module.exports = kefirBus;
 
-var util = require('util');
 var Kefir = require('kefir');
 
 var dummyPool = {plug: function() {}, unplug: function() {}};
