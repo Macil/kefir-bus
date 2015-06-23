@@ -66,12 +66,21 @@
     for (i = 0, len = events.length; i < len; i++) {
       event = events[i];
       if (event === '<end>') {
-        obs._send('end');
+        if (obs._send)
+          obs._send('end');
+        else
+          obs._emitEnd();
       }
       if (typeof event === 'object' && 'error' in event) {
-        obs._send('error', event.error);
+        if (obs._send)
+          obs._send('error', event.error);
+        else
+          obs._emitError(event.error);
       } else {
-        obs._send('value', event);
+        if (obs._send)
+          obs._send('value', event);
+        else
+          obs._emitValue(event);
       }
     }
     return obs;
