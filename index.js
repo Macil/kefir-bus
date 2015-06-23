@@ -21,8 +21,8 @@ function kefirBus() {
     } else {
       pool.onAny(sub);
       return function() {
-        pool.offAny(sub);
         emitter = null;
+        pool.offAny(sub);
       };
     }
   });

@@ -1,6 +1,10 @@
-var Kefir, activate, deactivate, prop, ref, send, stream;
-
-ref = require('./test-helpers'), stream = ref.stream, prop = ref.prop, send = ref.send, activate = ref.activate, deactivate = ref.deactivate, Kefir = ref.Kefir;
+var ref = require('./test-helpers');
+var stream = ref.stream;
+var prop = ref.prop;
+var send = ref.send;
+var activate = ref.activate;
+var deactivate = ref.deactivate;
+var Kefir = ref.Kefir;
 
 var kefirBus = require('../index');
 
@@ -221,5 +225,22 @@ describe('bus', function() {
     return expect(bus).toEmit([6], function() {
       bus.emit(6);
     });
+  });
+  it("subscriptions made during deactivation don't miss emits", function(done) {
+    var bus = kefirBus();
+
+    bus.plug(Kefir.stream(function(emitter) {
+      return function() {
+        bus.onValue(function() {
+          done();
+        });
+      };
+    }));
+
+    function noop() {}
+    bus.onValue(noop);
+    bus.offValue(noop);
+
+    bus.emit(123);
   });
 });
