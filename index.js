@@ -56,9 +56,11 @@ function kefirBus() {
   };
 
   stream.end = function() {
-    ended = true;
-    if (emitter) emitter.end();
-    pool = dummyPool;
+    if (!ended) {
+      ended = true;
+      if (emitter) emitter.end();
+      pool = dummyPool;
+    }
     return this;
   };
 

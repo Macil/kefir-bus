@@ -243,4 +243,13 @@ describe('bus', function() {
 
     bus.emit(123);
   });
+
+  it("recursive end calls don't throw", function(done) {
+    var bus = kefirBus();
+    bus.onEnd(function() {
+      bus.end();
+      done();
+    });
+    bus.end();
+  });
 });
