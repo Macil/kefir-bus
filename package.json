@@ -22,9 +22,9 @@
   "homepage": "https://github.com/AgentME/kefir-bus",
   "devDependencies": {
     "jasmine-node": "^1.14.5",
-    "kefir": "^2.0.0"
+    "kefir": "^3.0.0"
   },
   "peerDependencies": {
-    "kefir": "^2.0.0"
+    "kefir": "^3.0.0"
   }
 }

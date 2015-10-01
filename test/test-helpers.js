@@ -9,29 +9,13 @@
 
   logItem = function(event) {
     if (event.type === 'value') {
-      if (event.current) {
-        return {
-          current: event.value
-        };
-      } else {
-        return event.value;
-      }
+      return event.value;
     } else if (event.type === 'error') {
-      if (event.current) {
-        return {
-          currentError: event.value
-        };
-      } else {
-        return {
-          error: event.value
-        };
-      }
+      return {
+        error: event.value
+      };
     } else {
-      if (event.current) {
-        return '<end:current>';
-      } else {
-        return '<end>';
-      }
+      return '<end>';
     }
   };
 
@@ -176,7 +160,7 @@
           exports.deactivate(this.actual);
           if (!this.isNot) {
             expectedLog.unshift({
-              currentError: -1
+              error: -1
             });
           }
         } else if (source instanceof Kefir.Property) {
@@ -187,7 +171,7 @@
           ]);
           if (!this.isNot) {
             expectedLog.unshift({
-              currentError: -1
+              error: -1
             });
           }
         }
