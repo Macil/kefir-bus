@@ -1,10 +1,16 @@
-module.exports = kefirBus;
-
-var Kefir = require('kefir');
+(function (root, factory) {
+  if (typeof define === 'function' && define.amd) {
+    define(['kefir'], factory);
+  } else if (typeof exports === 'object') {
+    module.exports = factory(require('kefir'));
+  } else {
+    root.KefirBus = factory(root.Kefir);
+  }
+}(this, function (Kefir) {
 
 var dummyPool = {plug: function() {}, unplug: function() {}};
 
-function kefirBus() {
+return function kefirBus() {
   var ended = false;
   var pool = Kefir.pool();
   var emitter = null;
@@ -65,4 +71,5 @@ function kefirBus() {
   };
 
   return stream.setName('bus');
-}
+};
+}));

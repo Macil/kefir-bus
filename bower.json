@@ -3,9 +3,6 @@
   "version": "2.0.0",
   "description": "Kefir.bus for people who still want it",
   "main": "index.js",
-  "scripts": {
-    "test": "jasmine-node test"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/AgentME/kefir-bus.git"
@@ -14,17 +11,30 @@
     "kefir",
     "kefir.js"
   ],
-  "author": "Chris Cowan <cowan@streak.com>",
+  "authors": [
+    "Chris Cowan <cowan@streak.com>"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/AgentME/kefir-bus/issues"
   },
   "homepage": "https://github.com/AgentME/kefir-bus",
   "devDependencies": {
-    "jasmine-node": "^1.14.5",
     "kefir": "^3.0.0"
   },
   "peerDependencies": {
     "kefir": "^3.0.0"
-  }
+  },
+  "moduleType": [
+    "amd",
+    "globals",
+    "node"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
 }

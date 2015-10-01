@@ -87,9 +87,7 @@ describe('bus', function() {
     b = send(prop(), [0]);
     c = stream();
     bus = kefirBus().plug(a).plug(b).plug(c);
-    return expect(bus).toEmit([{
-      current: 0
-    }, 1, 2, 3, 4, 5, 6], function() {
+    return expect(bus).toEmit([0, 1, 2, 3, 4, 5, 6], function() {
       send(a, [1]);
       send(b, [2]);
       send(c, [3]);
@@ -104,9 +102,7 @@ describe('bus', function() {
     b = send(prop(), [0]);
     c = stream();
     bus = kefirBus().plug(a).plug(b).plug(c);
-    return expect(bus).toEmit([{
-      current: 0
-    }, 1, 2, 3, '<end>'], function() {
+    return expect(bus).toEmit([0, 1, 2, 3, '<end>'], function() {
       send(a, [1]);
       send(b, [2]);
       send(c, [3]);
@@ -120,7 +116,7 @@ describe('bus', function() {
     b = send(prop(), [0]);
     c = stream();
     bus = kefirBus().end().plug(a).plug(b).plug(c);
-    return expect(bus).toEmit(['<end:current>'], function() {
+    return expect(bus).toEmit(['<end>'], function() {
       send(a, [1]);
       send(b, [2]);
       send(c, [3]);
@@ -133,26 +129,14 @@ describe('bus', function() {
     b = send(prop(), [1]);
     c = send(prop(), [2]);
     bus = kefirBus().plug(a).plug(b).plug(c);
-    expect(bus).toEmit([{
-      current: 0
-    }, {
-      current: 1
-    }, {
-      current: 2
-    }]);
+    expect(bus).toEmit([0, 1, 2]);
     bus = kefirBus().plug(a).plug(b).plug(c);
     activate(bus);
     expect(bus).toEmit([]);
     bus = kefirBus().plug(a).plug(b).plug(c);
     activate(bus);
     deactivate(bus);
-    return expect(bus).toEmit([{
-      current: 0
-    }, {
-      current: 1
-    }, {
-      current: 2
-    }]);
+    return expect(bus).toEmit([0, 1, 2]);
   });
   it('should not deliver events from removed sources', function() {
     var a, b, bus, c;
