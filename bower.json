@@ -1,0 +1,40 @@
+{
+  "name": "kefir-bus",
+  "version": "2.0.0",
+  "description": "Kefir.bus for people who still want it",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AgentME/kefir-bus.git"
+  },
+  "keywords": [
+    "kefir",
+    "kefir.js"
+  ],
+  "authors": [
+    "Chris Cowan <cowan@streak.com>"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AgentME/kefir-bus/issues"
+  },
+  "homepage": "https://github.com/AgentME/kefir-bus",
+  "devDependencies": {
+    "kefir": "^3.0.0"
+  },
+  "peerDependencies": {
+    "kefir": "^3.0.0"
+  },
+  "moduleType": [
+    "amd",
+    "globals",
+    "node"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
