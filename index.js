@@ -38,6 +38,7 @@ return function kefirBus(config) {
     } else {
       stream = stream.toProperty(config.property);
     }
+    stream.onValue(function () { /* activate */ });
   }
 
   stream.emit = function(x) {
