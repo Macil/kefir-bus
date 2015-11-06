@@ -10,7 +10,7 @@
 
 var dummyPool = {plug: function() {}, unplug: function() {}};
 
-return function kefirBus() {
+return function kefirBus(config) {
   var ended = false;
   var pool = Kefir.pool();
   var emitter = null;
@@ -31,6 +31,14 @@ return function kefirBus() {
       };
     }
   });
+
+  if (config && config.property){
+    if (config.property === true){
+      stream = stream.toProperty();
+    } else {
+      stream = stream.toProperty(config.property);
+    }
+  }
 
   stream.emit = function(x) {
     if (emitter) emitter.emit(x);

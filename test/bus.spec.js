@@ -12,6 +12,17 @@ describe('bus', function() {
   it('should return stream', function() {
     expect(kefirBus()).toBeStream();
   });
+  it('should return property when config have property', function() {
+    expect(kefirBus({property: true})).toBeProperty();
+  });
+  it('should return property with initial value from config', function() {
+    var prop = kefirBus({
+      property: function() {
+        return 1;
+      }
+    });
+    return expect(prop).toEmit([1]);
+  });
   it('should not be ended', function() {
     return expect(kefirBus()).toEmit([]);
   });
