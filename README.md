@@ -16,5 +16,5 @@ Now with this module:
     var kefirBus = require('kefir-bus');
     var bus = kefirBus();
 
-See Kefir's [deprecated API docs](https://github.com/pozadi/kefir/blob/master/deprecated-api-docs.md)
+See Kefir's [deprecated API docs](https://github.com/rpominov/kefir/blob/v2/deprecated-api-docs.md)
 for information about Kefir buses.
