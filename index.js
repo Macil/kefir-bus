@@ -34,31 +34,31 @@ return function kefirBus() {
 
   stream.emit = function(x) {
     if (emitter) emitter.emit(x);
-    return this;
+    return stream;
   };
 
   stream.error = function(err) {
     if (emitter) emitter.error(err);
-    return this;
+    return stream;
   };
 
   stream.emitEvent = function(event) {
     if (event.type === 'end') {
-      this.end();
+      stream.end();
     } else {
       if (emitter) emitter.emitEvent(event);
     }
-    return this;
+    return stream;
   };
 
   stream.plug = function(s) {
     pool.plug(s);
-    return this;
+    return stream;
   };
 
   stream.unplug = function(s) {
     pool.unplug(s);
-    return this;
+    return stream;
   };
 
   stream.end = function() {
@@ -67,7 +67,7 @@ return function kefirBus() {
       if (emitter) emitter.end();
       pool = dummyPool;
     }
-    return this;
+    return stream;
   };
 
   return stream.setName('bus');
