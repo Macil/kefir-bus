@@ -8,68 +8,68 @@
   }
 }(this, function (Kefir) {
 
-var dummyPool = {plug: function() {}, unplug: function() {}};
+  var dummyPool = {plug: function() {}, unplug: function() {}};
 
-return function kefirBus() {
-  var ended = false;
-  var pool = Kefir.pool();
-  var emitter = null;
+  return function kefirBus() {
+    var ended = false;
+    var pool = Kefir.pool();
+    var emitter = null;
 
-  var stream = Kefir.stream(function(_emitter) {
-    function sub(event) {
-      _emitter.emitEvent(event);
-    }
-    emitter = _emitter;
+    var stream = Kefir.stream(function(_emitter) {
+      function sub(event) {
+        _emitter.emitEvent(event);
+      }
+      emitter = _emitter;
 
-    if (ended) {
-      _emitter.end();
-    } else {
-      pool.onAny(sub);
-      return function() {
-        emitter = null;
-        pool.offAny(sub);
-      };
-    }
-  });
+      if (ended) {
+        _emitter.end();
+      } else {
+        pool.onAny(sub);
+        return function() {
+          emitter = null;
+          pool.offAny(sub);
+        };
+      }
+    });
 
-  stream.emit = function(x) {
-    if (emitter) emitter.emit(x);
-    return stream;
+    stream.emit = function(x) {
+      if (emitter) emitter.emit(x);
+      return stream;
+    };
+
+    stream.error = function(err) {
+      if (emitter) emitter.error(err);
+      return stream;
+    };
+
+    stream.emitEvent = function(event) {
+      if (event.type === 'end') {
+        stream.end();
+      } else {
+        if (emitter) emitter.emitEvent(event);
+      }
+      return stream;
+    };
+
+    stream.plug = function(s) {
+      pool.plug(s);
+      return stream;
+    };
+
+    stream.unplug = function(s) {
+      pool.unplug(s);
+      return stream;
+    };
+
+    stream.end = function() {
+      if (!ended) {
+        ended = true;
+        if (emitter) emitter.end();
+        pool = dummyPool;
+      }
+      return stream;
+    };
+
+    return stream.setName('bus');
   };
-
-  stream.error = function(err) {
-    if (emitter) emitter.error(err);
-    return stream;
-  };
-
-  stream.emitEvent = function(event) {
-    if (event.type === 'end') {
-      stream.end();
-    } else {
-      if (emitter) emitter.emitEvent(event);
-    }
-    return stream;
-  };
-
-  stream.plug = function(s) {
-    pool.plug(s);
-    return stream;
-  };
-
-  stream.unplug = function(s) {
-    pool.unplug(s);
-    return stream;
-  };
-
-  stream.end = function() {
-    if (!ended) {
-      ended = true;
-      if (emitter) emitter.end();
-      pool = dummyPool;
-    }
-    return stream;
-  };
-
-  return stream.setName('bus');
-};
 }));
