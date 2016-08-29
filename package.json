@@ -4,7 +4,8 @@
   "description": "Kefir.bus for people who still want it",
   "main": "index.js",
   "scripts": {
-    "test": "npm run lint && jasmine-node test",
+    "test": "npm run lint && npm run flow_check && jasmine-node test",
+    "flow_check": "flow check",
     "lint": "eslint .",
     "lint-fix": "eslint . --fix"
   },
@@ -23,11 +24,13 @@
   },
   "homepage": "https://github.com/AgentME/kefir-bus",
   "devDependencies": {
+    "babel-eslint": "^6.1.2",
     "eslint": "^3.4.0",
+    "flow-bin": "^0.31.1",
     "jasmine-node": "^1.14.5",
-    "kefir": "^3.0.0"
+    "kefir": "^3.5.1"
   },
   "peerDependencies": {
-    "kefir": "^3.0.0"
+    "kefir": "^3.5.1"
   }
 }

@@ -1,0 +1,10 @@
+/* @flow */
+
+import Kefir from 'kefir';
+import type {Emitter} from 'kefir';
+
+export type Bus<V,E=*> = Kefir.Pool<V,E>&Emitter<V,E>;
+
+declare function kefirBus(): Bus<*,*>;
+
+module.exports = kefirBus;
