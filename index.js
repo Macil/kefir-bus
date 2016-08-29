@@ -32,7 +32,7 @@
       }
     });
 
-    stream.emit = function(x) {
+    stream.value = stream.emit = function(x) {
       if (emitter) emitter.emit(x);
       return stream;
     };
@@ -42,7 +42,7 @@
       return stream;
     };
 
-    stream.emitEvent = function(event) {
+    stream.event = stream.emitEvent = function(event) {
       if (event.type === 'end') {
         stream.end();
       } else {

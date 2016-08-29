@@ -24,14 +24,14 @@ describe('bus', function() {
       },
       3, '<end>'
     ], function() {
-      a.emit(1);
+      a.value(1);
       a.emit(2);
       a.error(-1);
       a.emit(3);
       return a.end();
     });
   });
-  it('should emit events via .emitEvent', function() {
+  it('should emit events via .emitEvent and .event', function() {
     var a;
     a = kefirBus();
     return expect(a).toEmit([
@@ -40,7 +40,7 @@ describe('bus', function() {
       },
       3, '<end>'
     ], function() {
-      a.emitEvent({
+      a.event({
         type: 'value',
         value: 1,
         current: false
