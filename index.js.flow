@@ -1,9 +1,19 @@
 /* @flow */
 
-import Kefir from 'kefir';
-import type {Emitter} from 'kefir';
+import type {Observable, Event} from 'kefir';
 
-export type Bus<V,E=*> = Kefir.Pool<V,E>&Emitter<V,E>;
+export type Bus<V,E=*> = Observable<V,E> & {
+  value(value: V): Bus<V,E>;
+  event(event: Event<V,E>): Bus<V,E>;
+  error(e: E): Bus<V,E>;
+  end(): Bus<V,E>;
+
+  emit(value: V): Bus<V,E>;
+  emitEvent(event: Event<V,E>): Bus<V,E>;
+
+  plug(s: Observable<V,E>): Bus<V,E>;
+  unplug(s: Observable<V,E>): Bus<V,E>;
+};
 
 declare function kefirBus(): Bus<*,*>;
 
