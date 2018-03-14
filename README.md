@@ -22,7 +22,7 @@ var kefirBus = require('kefir-bus');
 var bus = kefirBus();
 ```
 
-See Kefir's [deprecated API docs](https://github.com/rpominov/kefir/blob/v2/deprecated-api-docs.md#kefirbus)
+See Kefir's [deprecated API docs](https://github.com/kefirjs/kefir/blob/v2/deprecated-api-docs.md#kefirbus)
 for information about Kefir buses.
 
 Most code that uses Buses can be done in a better and more idiomatic way with
