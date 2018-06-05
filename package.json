@@ -24,9 +24,9 @@
   },
   "homepage": "https://github.com/AgentME/kefir-bus",
   "devDependencies": {
-    "babel-eslint": "^7.1.1",
-    "eslint": "^3.11.1",
-    "flow-bin": "^0.39.0",
+    "babel-eslint": "^8.2.3",
+    "eslint": "^4.19.1",
+    "flow-bin": "^0.73.0",
     "jasmine-node": "^1.14.5",
     "kefir": "^3.5.1"
   },
