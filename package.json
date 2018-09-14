@@ -26,7 +26,7 @@
   "devDependencies": {
     "babel-eslint": "^8.2.3",
     "eslint": "^5.0.0",
-    "flow-bin": "^0.80.0",
+    "flow-bin": "^0.81.0",
     "jasmine-node": "^1.14.5",
     "kefir": "^3.5.1"
   },
