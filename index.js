@@ -10,7 +10,7 @@
 
   var dummyPool = {plug: function() {}, unplug: function() {}};
 
-  return function kefirBus() {
+  function kefirBus() {
     var ended = false;
     var pool = Kefir.pool();
     var emitter = null;
@@ -71,5 +71,11 @@
     };
 
     return stream.setName('bus');
-  };
+  }
+
+  // Make kefirBus accessible as the default export of this module.
+  // Small hack to make `import kefirBus from 'kefir-bus';` work with TypeScript.
+  kefirBus.default = kefirBus;
+
+  return kefirBus;
 }));

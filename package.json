@@ -4,7 +4,7 @@
   "description": "Kefir.bus for people who still want it",
   "main": "index.js",
   "scripts": {
-    "test": "yarn run lint && yarn run flow_check && jasmine-node test",
+    "test": "yarn run lint && yarn run flow_check && tsc && jasmine-node test",
     "flow_check": "flow check",
     "lint": "eslint .",
     "lint-fix": "eslint . --fix"
@@ -24,10 +24,12 @@
   },
   "homepage": "https://github.com/Macil/kefir-bus",
   "devDependencies": {
+    "@types/kefir": "^3.7.0",
     "eslint": "^5.6.0",
     "flow-bin": "^0.81.0",
     "jasmine-node": "^1.16.2",
-    "kefir": "^3.5.1"
+    "kefir": "^3.5.1",
+    "typescript": "^3.0.3"
   },
   "peerDependencies": {
     "kefir": "^3.5.1"
