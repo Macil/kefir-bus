@@ -58,5 +58,6 @@ Kefir.interval(1000).take(5).onValue(function() {
 
 ## Types
 
-[Flow](https://flowtype.org/) type declarations for this module are included!
-If you are using Flow, they won't require any configuration to use.
+Both [TypeScript](https://www.typescriptlang.org/) and
+[Flow](https://flowtype.org/) type definitions for this module are included!
+The type definitions won't require any configuration to use.

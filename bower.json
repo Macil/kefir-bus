@@ -1,6 +1,6 @@
 {
   "name": "kefir-bus",
-  "version": "2.1.0",
+  "version": "2.3.0",
   "description": "Kefir.bus for people who still want it",
   "main": "index.js",
   "repository": {
