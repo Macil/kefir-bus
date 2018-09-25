@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/AgentME/kefir-bus.git"
+    "url": "https://github.com/Macil/kefir-bus.git"
   },
   "keywords": [
     "kefir",
@@ -20,9 +20,9 @@
   "author": "Chris Cowan <cowan@streak.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/AgentME/kefir-bus/issues"
+    "url": "https://github.com/Macil/kefir-bus/issues"
   },
-  "homepage": "https://github.com/AgentME/kefir-bus",
+  "homepage": "https://github.com/Macil/kefir-bus",
   "devDependencies": {
     "eslint": "^5.0.0",
     "flow-bin": "^0.80.0",

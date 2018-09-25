@@ -5,7 +5,7 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/AgentME/kefir-bus.git"
+    "url": "https://github.com/Macil/kefir-bus.git"
   },
   "keywords": [
     "kefir",
@@ -16,9 +16,9 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/AgentME/kefir-bus/issues"
+    "url": "https://github.com/Macil/kefir-bus/issues"
   },
-  "homepage": "https://github.com/AgentME/kefir-bus",
+  "homepage": "https://github.com/Macil/kefir-bus",
   "devDependencies": {
     "kefir": "^3.0.0"
   },
