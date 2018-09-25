@@ -31,5 +31,10 @@
   },
   "peerDependencies": {
     "kefir": "^3.5.1"
+  },
+  "greenkeeper": {
+    "ignore": [
+      "flow-bin"
+    ]
   }
 }
