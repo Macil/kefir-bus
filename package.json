@@ -3,6 +3,7 @@
   "version": "2.2.1",
   "description": "Kefir.bus for people who still want it",
   "main": "index.js",
+  "sideEffects": false,
   "scripts": {
     "test": "yarn run lint && yarn run flow_check && tsc && jasmine-node test",
     "flow_check": "flow check",
