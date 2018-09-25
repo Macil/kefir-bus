@@ -4,7 +4,7 @@
   "description": "Kefir.bus for people who still want it",
   "main": "index.js",
   "scripts": {
-    "test": "npm run lint && npm run flow_check && jasmine-node test",
+    "test": "yarn run lint && yarn run flow_check && jasmine-node test",
     "flow_check": "flow check",
     "lint": "eslint .",
     "lint-fix": "eslint . --fix"
