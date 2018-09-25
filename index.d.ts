@@ -1,5 +1,3 @@
-/* @flow */
-
 import {Observable, Event} from 'kefir';
 
 export interface Bus<V,E> extends Observable<V,E> {
