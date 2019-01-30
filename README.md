@@ -3,7 +3,7 @@
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/Macil/kefir-bus/blob/master/LICENSE.txt) [![npm version](https://img.shields.io/npm/v/kefir-bus.svg?style=flat)](https://www.npmjs.com/package/kefir-bus) [![CircleCI Status](https://circleci.com/gh/Macil/kefir-bus.svg?style=shield)](https://circleci.com/gh/Macil/kefir-bus) [![Greenkeeper badge](https://badges.greenkeeper.io/Macil/kefir-bus.svg)](https://greenkeeper.io/)
 
 Kefir 3.0 removed `Kefir.bus` from the core project, so now it's up to 3rd
-party modules to implement them. This module is an implementation of Kefir.Bus
+party modules to implement it. This module is an implementation of Kefir.Bus
 that passes all of Kefir's older tests for Kefir.Bus.
 
 Older code:
