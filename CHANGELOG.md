@@ -1,3 +1,7 @@
+## 2.3.1 (2019-01-29)
+
+* Updated TypeScript type definitions for compatibility with latest Kefir type definitions.
+
 ## 2.3.0 (2018-09-25)
 
 * Added TypeScript type definitions.
